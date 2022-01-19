@@ -4,6 +4,7 @@ import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class AuthController {
 	@Autowired
 	AuthService authService;
 	
+	@CrossOrigin
 	@ApiOperation(value = "Sign Up Users", notes = "default method for adding Users")
     @PostMapping("/signup")
     public ResponseEntity<UserDto> addUser(@RequestBody UserDto dto) {
@@ -31,10 +33,11 @@ public class AuthController {
 
     }
 	
+	@CrossOrigin
 	@ApiOperation(value = "Log In User", notes = "default method for Logging In User")
     @PostMapping("/login")
     public AccessTokenResponse logInUser(@RequestBody LoginUser user) {
-		
+		System.out.println("inside login *******************");
         return authService.logInUser(user);
     }
 }
